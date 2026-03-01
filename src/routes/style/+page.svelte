@@ -15,7 +15,7 @@
 
 	function next() {
 		photobooth.setStripColor(selectedColor);
-		goto('/instructions');
+		goto(state.userCount === 2 ? '/session' : '/instructions');
 	}
 </script>
 

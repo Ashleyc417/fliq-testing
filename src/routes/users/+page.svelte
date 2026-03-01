@@ -9,11 +9,7 @@
 
 	function next() {
 		photobooth.setUserCount(selected);
-		if (selected === 2) {
-			goto('/session');
-		} else {
-			goto('/layout');
-		}
+		goto('/layout');
 	}
 </script>
 
