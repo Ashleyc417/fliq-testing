@@ -1,0 +1,86 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+	--surface: #080810;
+	--surface-card: #0f0f20;
+	--surface-elevated: #161628;
+	--accent-green: #00e676;
+	--accent-pink: #ff4d8d;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--surface);
+	color: #fff;
+	min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--surface-card); }
+::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 4px; }
+
+:focus-visible {
+	outline: 2px solid var(--accent-green);
+	outline-offset: 2px;
+}
+
+/* ── Buttons ──────────────────────────────── */
+.btn-primary {
+	@apply bg-accent-green text-surface font-bold font-display px-8 py-4 rounded-2xl
+           transition-all duration-200 hover:brightness-110 hover:scale-[1.03] active:scale-95
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100;
+}
+
+.btn-ghost {
+	@apply border border-white/15 text-white/60 font-display px-8 py-4 rounded-2xl
+           transition-all duration-200 hover:border-white/30 hover:text-white bg-white/[0.03]
+           active:scale-95;
+}
+
+/* ── Cards ────────────────────────────────── */
+.card {
+	@apply bg-surface-card rounded-3xl border border-white/[0.06];
+}
+
+.card-elevated {
+	@apply bg-surface-elevated rounded-3xl border border-white/10;
+}
+
+/* ── Noise texture overlay ────────────────── */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 9999;
+	opacity: 0.018;
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	background-size: 200px 200px;
+}
+
+@layer utilities {
+	.text-gradient {
+		background-image: linear-gradient(90deg, #00e676, #4daaff);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.glass {
+		background: rgba(255, 255, 255, 0.03);
+		backdrop-filter: blur(12px);
+		border: 1px solid rgba(255, 255, 255, 0.07);
+	}
+
+	.glow-green {
+		box-shadow: 0 0 30px rgba(0, 230, 118, 0.2), 0 0 60px rgba(0, 230, 118, 0.08);
+	}
+}
